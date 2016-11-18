@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Successful!</title>
+  </head>
+  <body>
+    <h2>Welcome {{user.username}}</h2>
+    <h3>Your Wish List</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Added By</th>
+          <th>Date Added</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for thing in mystuff %}
+          <tr>
+            <td>{{thing.item_name}}</td>
+            <td>{{thing.login.username}}</td>
+            <td>{{thing.created_at}}</td>
+            <td><a href='/delete/{{thing.item_name}}'>Delete</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <h3>Other Users' Wish List</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Added By</th>
+          <th>Date Added</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in otherstuff %}
+          <tr>
+            <td>{{item.item_name}}</td>
+            <td>{{item.login.username}}</td>
+            <td>{{item.created_at}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="/additem" method="POST">Add Item</a>
+  </body>
+</html>
